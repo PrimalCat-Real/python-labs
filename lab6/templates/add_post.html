@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Post</title>
+</head>
+<body>
+    <h1>Add a New Post for {{ user.name }}</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.title.label }} {{ form.title() }}</p>
+        <p>{{ form.content.label }} {{ form.content() }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <a href="{{ url_for('posts', user_id=user.id) }}">Back to Posts</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Posts</title>
+</head>
+<body>
+    <h1>Posts of {{ user.name }}</h1>
+    <ul>
+        {% for post in user.posts %}
+        <li>
+            <strong>{{ post.title }}</strong>: {{ post.content }} 
+            <a href="{{ url_for('delete_post', id=post.id) }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_post', user_id=user.id) }}">Add New Post</a>
+    <br>
+    <a href="{{ url_for('index') }}">Back to Users</a>
+</body>
+</html>

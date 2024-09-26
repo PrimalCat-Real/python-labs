@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <ul>
+        {% for user in users %}
+        <li>
+            {{ user.name }} ({{ user.age }} years old) 
+            <a href="{{ url_for('delete_user', id=user.id) }}">Delete</a>
+            <br>
+            <strong>Posts:</strong>
+            <ul>
+                {% if user.posts %}
+                    {% for post in user.posts %}
+                    <li><strong>{{ post.title }}</strong>: {{ post.content }} <a href="{{ url_for('delete_post', id=post.id) }}">Delete Post</a></li>
+                    {% endfor %}
+                {% else %}
+                    <li>No posts</li>
+                {% endif %}
+            </ul>
+            <a href="{{ url_for('add_post', user_id=user.id) }}">Add Post</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_user') }}">Add User</a>
+</body>
+</html>
