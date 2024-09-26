@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.name }}!</h1>
+
+    <h2>Create a Product</h2>
+    <form action="{% url 'create_product' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }} 
+        <button type="submit">Create Product</button>
+    </form>
+
+    <h2>Search Products</h2>
+    <form method="get" action="{% url 'search_products' %}">
+        <input type="text" name="q" placeholder="Search products...">
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Products List</h2>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} - ${{ product.price }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
